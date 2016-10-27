@@ -9,7 +9,7 @@ test('gets scroll parent when overflow is `auto`', () => {
         </p>
       </div>
     </main>
-  `;
+  `
 
   const el = document.querySelector('.el')
   const scrollParent = document.querySelector('main')
@@ -26,7 +26,7 @@ test('gets scroll parent when overflow is `scroll`', () => {
         </p>
       </div>
     </main>
-  `;
+  `
 
   const el = document.querySelector('.el')
   const scrollParent = document.querySelector('main')
@@ -43,7 +43,7 @@ test('gets window when no scroll parent can be found', () => {
         </p>
       </div>
     </main>
-  `;
+  `
 
   const el = document.querySelector('.el')
   const scrollParent = window

@@ -1,6 +1,6 @@
 import on from './on'
 
-beforeAll( () => {
+beforeAll(() => {
   document.body.innerHTML = `
     <main>
       <div>
@@ -9,23 +9,23 @@ beforeAll( () => {
         </p>
       </div>
     </main>
-  `;
-});
+  `
+})
 
 test('adds a click event listener to an element', () => {
-  let hello = '';
+  let hello = ''
 
   const el = document.querySelector('.el')
-  on('click')(el)(() => hello = 'hello');
+  on('click')(el)(() => hello = 'hello')
   el.click()
   expect(hello).toBe('hello')
-});
+})
 
 test('returns a function that removes the event listener', () => {
-  let hello = '';
+  let hello = ''
 
   const el = document.querySelector('.el')
-  const off = on('click')(el)(() => hello = 'hello');
+  const off = on('click')(el)(() => hello = 'hello')
   off()
   el.click()
 
