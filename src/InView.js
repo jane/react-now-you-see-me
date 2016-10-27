@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
-import {default as debounceFn} from 'lodash/debounce'
-import { func, number } from 'propTypes'
+import { Component, PropTypes } from 'react'
+import { findDOMNode } from 'react-dom'
+import { default as debounceFn } from 'lodash.debounce'
 import isInView from './isInView'
 import getScrollParent from './getScrollParent'
 import on from './on'
+
+const { func, number, bool } = PropTypes
 
 const onScroll = on('scroll')
 const onWindowScroll = onScroll(window)
@@ -12,20 +14,20 @@ export default class InView extends Component {
   static propTypes = {
     children: func.isRequired,
     debounce: number,
-    threshold: number
+    threshold: number,
+    once: bool
   }
 
   static defaultProps = {
     debounce: 250,
-    threshold: 0
+    threshold: 0,
+    once: false
   }
 
-  constructor (props) {
-    super(props)
-    this.state = { isInView: false }
-  }
+  state = { isInView: false, onced: false }
 
   componentDidMount () {
+    this._ref = findDOMNode(this)
     this.checkIsInView()
 
     const scrollParent = getScrollParent(this._ref)
@@ -45,29 +47,36 @@ export default class InView extends Component {
   }
 
   shouldComponentUpdate (_, nextState) {
-    return nextState.isInView && !this.state.isInView
+    return nextState.isInView !== this.state.isInView
   }
 
   onDismount = ((fns) => (fn) => {
-    if (fns) {
+    if (fn) {
       fns.push(fn)
     } else {
       fns.map(fn => fn())
+      fns = []
     }
   })([])
 
-  setRef = (ref) => { this._ref = ref }
-
   checkIsInView = debounceFn(
-    () => isInView(this._ref, this.props.threshold) && this.setState({ isInView: true }),
+    () => {
+      if (!this.state.onced) {
+        const wasInView = this.state.isInView
+        const isNowInView = isInView(this._ref, this.props.threshold)
+
+        if (this._ref && wasInView !== isNowInView) {
+          this.setState({ isInView: isNowInView, onced: this.props.once })
+        }
+      }
+    },
     this.props.debounce
   )
 
   render () {
-    return (
-      <div ref={this.setRef}>
-        {this.props.children(this.state.isInView)}
-      </div>
-    )
+    // <InView does not render anything beyond what is returned from the child function.
+    // It is therefore necessary that the child function returns a renderable react element not including `null`
+    // or <InView /> will not call the child function again, as null will never be in the viewport.
+    return this.props.children(this.state.isInView)
   }
 }
