@@ -4,8 +4,12 @@
   "description": "A react component for determining when it is within a given threshold of the viewport",
   "main": "src/index.js",
   "scripts": {
-    "test": "npm run lint && jest",
-    "lint": "eslint . --fix"
+    "test": "npm run test:lint && npm run test:tape",
+    "test:lint": "eslint -c .eslintrc.json src",
+    "test:tape": "babel-tape-runner src/*.test.js | tap-spec",
+    "build": "babel -Dd lib src",
+    "prebuild": "npm t",
+    "preversion": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -22,29 +26,34 @@
   },
   "homepage": "https://github.com/jane/react-in-view#readme",
   "devDependencies": {
-    "babel": "^6.5.2",
-    "babel-eslint": "^7.1.0",
-    "babel-plugin-transform-class-properties": "^6.18.0",
-    "babel-preset-latest": "^6.16.0",
-    "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-3": "^6.17.0",
-    "babel-register": "^6.18.0",
-    "enzyme": "^2.5.1",
-    "eslint": "^3.8.1",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.4.1",
-    "jest": "^16.0.2",
-    "react": "^15.3.2",
-    "react-addons-test-utils": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.6.2"
+    "babel-cli": "6.26.0",
+    "babel-eslint": "8.2.1",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-react": "6.24.1",
+    "babel-preset-stage-3": "6.24.1",
+    "babel-register": "6.26.0",
+    "babel-tape-runner": "2.0.1",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
+    "eslint": "4.16.0",
+    "eslint-config-jane": "0.7.3",
+    "eslint-plugin-babel": "4.1.2",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-promise": "3.6.0",
+    "eslint-plugin-react": "7.5.1",
+    "eslint-plugin-unicorn": "3.0.1",
+    "react": "16.2.0",
+    "react-addons-test-utils": "15.6.2",
+    "react-dom": "16.2.0",
+    "tap-spec": "4.1.1",
+    "tape": "4.8.0"
   },
   "dependencies": {
-    "lodash.debounce": "^4.0.8"
+    "lodash.debounce": "4.0.8"
   },
   "peerDependencies": {
-    "react": ">=0.14.0",
-    "react-dom": ">=0.14.0"
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
   }
 }
