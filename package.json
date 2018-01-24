@@ -1,34 +1,39 @@
 {
   "name": "react-in-view",
-  "version": "1.0.0",
   "description": "A react component for determining when it is within a given threshold of the viewport",
-  "main": "src/index.js",
+  "version": "1.0.0",
+  "author": "Cory Brown <oh.wise.man@gmail.com>",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
-    "test": "npm run test:lint && npm run test:tape",
-    "test:lint": "eslint -c .eslintrc.json src",
-    "test:tape": "babel-tape-runner src/*.test.js | tap-spec",
     "build": "babel -Dd lib src",
     "prebuild": "npm t",
-    "preversion": "npm run build"
+    "preversion": "npm run build",
+    "test": "npm run test:lint && npm run test:tape",
+    "test:lint": "eslint -c .eslintrc.json src",
+    "test:tape": "babel-tape-runner src/*.test.js | tap-spec"
   },
+  "homepage": "https://github.com/jane/react-in-view#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jane/react-in-view.git"
+    "url": "git@github.com:jane/react-in-view.git"
   },
+  "bugs": "https://github.com/jane/react-in-view/issues",
   "keywords": [
     "react",
     "viewport"
   ],
-  "author": "Cory Brown <oh.wise.man@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jane/react-in-view/issues"
+  "dependencies": {
+    "lodash.debounce": "4.0.8"
   },
-  "homepage": "https://github.com/jane/react-in-view#readme",
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-eslint": "8.2.1",
     "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.12",
     "babel-preset-env": "1.6.1",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-3": "6.24.1",
@@ -43,14 +48,12 @@
     "eslint-plugin-promise": "3.6.0",
     "eslint-plugin-react": "7.5.1",
     "eslint-plugin-unicorn": "3.0.1",
+    "prop-types": "15.6.0",
     "react": "16.2.0",
     "react-addons-test-utils": "15.6.2",
     "react-dom": "16.2.0",
     "tap-spec": "4.1.1",
     "tape": "4.8.0"
-  },
-  "dependencies": {
-    "lodash.debounce": "4.0.8"
   },
   "peerDependencies": {
     "react": ">=16.0.0",

@@ -5,6 +5,7 @@
 .DS_Store
 .idea
 .vscode
+/lib
 /assets
 build
 coverage
