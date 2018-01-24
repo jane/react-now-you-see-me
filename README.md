@@ -1,6 +1,10 @@
 # react-now-you-see-me
 
-A react component for determining when it is within a given threshold of the viewport
+A react component for determining when it is within a given threshold of the viewport.
+
+## *PRERELEASE*
+
+This library might not be correct yet, use with care.
 
 --------
 
