@@ -1,0 +1,70 @@
+html, body {
+  box-sizing: border-box;
+  margin: 0;
+  background: #fff;
+  font-family: 'Proxima Nova', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+#root {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.md {
+  margin: 25px auto;
+}
+
+.wrapper {
+  max-width: 900px;
+}
+
+a {
+  text-decoration: none;
+  color: #36c6b1;
+}
+
+hr {
+  border-top: 1px solid #e5e5e5;
+  border-width: 0px 1px 0px 0px;
+  height: 0;
+}
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%,80% {
+    transform: rotate(10deg)
+  }
+}
+
+@media (max-width:500px) {
+  .github-corner:hover .octo-arm {
+    animation:none;
+  }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
+
+.box {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

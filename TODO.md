@@ -1,6 +1,6 @@
 * get all tests passing
 * set up code coverage
 * flow?
-* demo
+* make it actually work?????
 * docs
 * publish
