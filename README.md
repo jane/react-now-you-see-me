@@ -1,4 +1,4 @@
-# react-in-view
+# react-now-you-see-me
 
 A react component for determining when it is within a given threshold of the viewport
 
@@ -6,7 +6,7 @@ A react component for determining when it is within a given threshold of the vie
 
 ### Installation
 
-`npm i @janecorp/react-in-view`
+`npm i react-now-you-see-me`
 
 You'll also need React and ReactDOM peer dependencies: `npm i react react-dom`.
 
@@ -14,7 +14,7 @@ You'll also need React and ReactDOM peer dependencies: `npm i react react-dom`.
 
 ```jsx
 import React from 'react'
-import InView from '@janecorp/react-in-view'
+import InView from 'react-now-you-see-me'
 
 const Foo = (props) => (
   <div>

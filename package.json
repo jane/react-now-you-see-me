@@ -1,5 +1,5 @@
 {
-  "name": "react-in-view",
+  "name": "react-now-you-see-me",
   "description": "A react component for determining when it is within a given threshold of the viewport",
   "version": "1.0.0",
   "author": "Cory Brown <oh.wise.man@gmail.com>",
@@ -16,12 +16,12 @@
     "test:jest": "jest",
     "test:lint": "eslint -c .eslintrc.json src"
   },
-  "homepage": "https://github.com/jane/react-in-view#readme",
+  "homepage": "https://github.com/jane/react-now-you-see-me#readme",
   "repository": {
     "type": "git",
-    "url": "git@github.com:jane/react-in-view.git"
+    "url": "git@github.com:jane/react-now-you-see-me.git"
   },
-  "bugs": "https://github.com/jane/react-in-view/issues",
+  "bugs": "https://github.com/jane/react-now-you-see-me/issues",
   "keywords": [
     "react",
     "viewport"
