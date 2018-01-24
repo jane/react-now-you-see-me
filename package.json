@@ -19,7 +19,7 @@
     "test:jest": "jest",
     "test:lint": "eslint -c .eslintrc.json src"
   },
-  "homepage": "https://github.com/jane/react-now-you-see-me#readme",
+  "homepage": "https://jane.github.io/react-now-you-see-me",
   "repository": {
     "type": "git",
     "url": "git@github.com:jane/react-now-you-see-me.git"
