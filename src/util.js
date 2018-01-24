@@ -24,7 +24,7 @@ export const inViewport = ({
   boundingLeft,
   boundingRight,
   requireEntireElementInViewport = false
-}) => {
+} = {}) => {
   const isElInView = (element) => {
     if (!element) return false
     if (!element.offsetParent) return true
