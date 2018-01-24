@@ -1,1 +1,1 @@
-export { default } from './InView'
+export { default } from './in-view'

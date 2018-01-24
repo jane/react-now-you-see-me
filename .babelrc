@@ -1,4 +1,11 @@
 {
-  "presets": ["latest", "stage-3", "react"],
-  "plugins": ["babel-plugin-transform-class-properties"]
+  "presets": [
+    "env",
+    "stage-3",
+    "react"
+  ],
+  "plugins": [
+    "transform-class-properties",
+    ["transform-react-remove-prop-types", { "removeImport": true }]
+  ]
 }
