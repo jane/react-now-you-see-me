@@ -34,7 +34,8 @@ export default class InView extends React.Component {
       threshold: this.props.threshold,
       boundingLeft: this.props.boundingLeft,
       boundingRight: this.props.boundingRight,
-      requireEntireElementInViewport: true })
+      requireEntireElementInViewport: true
+    })
     this.checkIsInView()
     this.scrollUnsubscribe = onWindowScroll(this.checkIsInViewDebounced)
   }

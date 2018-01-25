@@ -18,7 +18,7 @@ const colors = [
 ]
 
 class Box extends Component {
-  static proptypes = {
+  static propTypes = {
     isInView: bool,
     i: number.isRequired
   }
@@ -40,26 +40,6 @@ class Box extends Component {
 }
 
 class Demo extends Component {
-  updateTitle = (s) => () => {
-    window.document.title = s
-  }
-
-  render () {
-    return (
-      <div style={{ height: 'calc(100vh * 10)' }}>
-        {Array(10).fill().map((_, i) =>
-          <InView key={i} threshold={0}>
-            {(isInView) =>
-              <Box i={i} isInView={isInView} />
-            }
-          </InView>
-        )}
-      </div>
-    )
-  }
-}
-
-class Docs extends Component {
   state = { docs: '' }
 
   componentWillMount () {
@@ -75,10 +55,16 @@ class Docs extends Component {
     return (
       <div className="wrapper">
         <div dangerouslySetInnerHTML={{ __html: this.state.docs }} className="md" />
-        <Demo />
+        <div style={{ height: 'calc(100vh * 10)' }}>
+          {Array(10).fill().map((_, i) =>
+            <InView key={i} threshold={0}>
+              {(isInView) => <Box i={i} isInView={isInView} />}
+            </InView>
+          )}
+        </div>
       </div>
     )
   }
 }
 
-render(<Docs />, document.getElementById('root'))
+render(<Demo />, document.getElementById('root'))
