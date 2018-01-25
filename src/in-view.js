@@ -60,7 +60,7 @@ export default class InView extends React.Component {
     if (this.props.once && this.state.hasUpdated) return
     const { threshold } = this.props
 
-    if (threshold > 10 && isProd) {
+    if (threshold > 10 && !isProd) {
       console.warn(`High InView threshold: "${threshold}". Threshold is multiplied by the viewport dimensions!`)
     }
 
