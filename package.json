@@ -9,7 +9,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "babel -Dd lib src",
+    "build": "babel -Dd lib src --ignore *.test.js",
     "dev": "webpack-dev-server --quiet --no-info --hot --inline --history-api-fallback --config webpack.config.babel.js",
     "doc": "webpack -p --config webpack.config.babel.js",
     "postbuild": "npm run doc",
