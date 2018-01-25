@@ -32,9 +32,9 @@ class Box extends Component {
   render () {
     const { i } = this.props
     return (
-      <div className="box" style={{ backgroundColor: colors[i] }}>
+      <section className="box" style={{ backgroundColor: colors[i] }}>
         <h3><code>location.title</code> should now be {i + 1}</h3>
-      </div>
+      </section>
     )
   }
 }
@@ -53,16 +53,16 @@ class Demo extends Component {
 
   render () {
     return (
-      <div className="wrapper">
-        <div dangerouslySetInnerHTML={{ __html: this.state.docs }} className="md" />
-        <div style={{ height: 'calc(100vh * 10)' }}>
+      <main className="wrapper">
+        <article dangerouslySetInnerHTML={{ __html: this.state.docs }} className="md" />
+        <React.Fragment>
           {Array(10).fill().map((_, i) =>
             <InView key={i} threshold={0}>
               {(isInView) => <Box i={i} isInView={isInView} />}
             </InView>
           )}
-        </div>
-      </div>
+        </React.Fragment>
+      </main>
     )
   }
 }

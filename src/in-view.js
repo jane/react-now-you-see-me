@@ -9,13 +9,13 @@ const isProd = process && process.env && process.env.NODE_ENV === 'production'
 
 export default class InView extends React.Component {
   static propTypes = {
-    children: func.isRequired,
     boundingLeft: number,
     boundingRight: number,
+    children: func.isRequired,
     debounce: number,
-    threshold: number,
+    horizontally: bool,
     once: bool,
-    horizontally: bool
+    threshold: number
   }
 
   static defaultProps = {
@@ -25,7 +25,11 @@ export default class InView extends React.Component {
   }
 
   mounted = false
-  state = { isInView: false, hasUpdated: false }
+
+  state = {
+    isInView: false,
+    hasUpdated: false
+  }
 
   componentDidMount () {
     this.mounted = true
@@ -55,6 +59,7 @@ export default class InView extends React.Component {
     if (!this.mounted) return
     if (this.props.once && this.state.hasUpdated) return
     const { threshold } = this.props
+
     if (threshold > 10 && isProd) {
       console.warn(`High InView threshold: "${threshold}". Threshold is multiplied by the viewport dimensions!`)
     }

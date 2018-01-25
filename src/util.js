@@ -14,10 +14,14 @@ const isBoundingClientRectInRange = ({ targetRect, boundingRect, fullyContained 
   const horizBounds = isBetween(boundingRect.left, boundingRect.right)
   const vertBounds = isBetween(boundingRect.top, boundingRect.bottom)
   return fullyContained
-    ? horizBounds(targetRect.left) && horizBounds(targetRect.right) &&
-      vertBounds(targetRect.top) && vertBounds(targetRect.bottom)
-    : horizBounds(targetRect.left) || horizBounds(targetRect.right) ||
-      vertBounds(targetRect.top) || vertBounds(targetRect.bottom)
+    ? horizBounds(targetRect.left) &&
+      horizBounds(targetRect.right) &&
+      vertBounds(targetRect.top) &&
+      vertBounds(targetRect.bottom)
+    : horizBounds(targetRect.left) ||
+      horizBounds(targetRect.right) ||
+      vertBounds(targetRect.top) ||
+      vertBounds(targetRect.bottom)
 }
 
 export const inViewport = ({
