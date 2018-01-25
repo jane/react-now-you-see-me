@@ -1,12 +1,15 @@
+const isFn = (f) => typeof f === 'function'
+
 export const on = (evtName, opts) => (el) => (fn) => {
-  el.addEventListener(evtName, fn, opts)
+  if (isFn(el.addEventListener)) el.addEventListener(evtName, fn, opts)
   return () => {
-    el.removeEventListener(evtName, fn)
-    fn.cancel && fn.cancel()
+    if (isFn(el.removeEventListener)) el.removeEventListener(evtName, fn)
+    if (isFn(fn.cancel)) fn.cancel()
   }
 }
 
 const isBetween = (minInclusive, max) => (target) => Math.max(Math.min(max, target), minInclusive) === target
+
 const isBoundingClientRectInRange = ({ targetRect, boundingRect, fullyContained }) => {
   const horizBounds = isBetween(boundingRect.left, boundingRect.right)
   const vertBounds = isBetween(boundingRect.top, boundingRect.bottom)
@@ -24,8 +27,8 @@ export const inViewport = ({
   boundingLeft,
   boundingRight,
   requireEntireElementInViewport = false
-} = {}) => {
-  const isElInView = (element) => {
+} = {}) =>
+  (element) => {
     if (!element) return false
     if (!element.offsetParent) return true
     const horizMin = 0 - offsetHoriz
@@ -39,8 +42,6 @@ export const inViewport = ({
         bottom: vertMax,
         left: isNaN(boundingLeft) ? horizMin : boundingLeft,
         right: isNaN(boundingRight) ? horizMax : boundingRight },
-      fullyContained: requireEntireElementInViewport })
+      fullyContained: requireEntireElementInViewport
+    })
   }
-
-  return isElInView
-}
