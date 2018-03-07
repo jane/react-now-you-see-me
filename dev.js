@@ -23,17 +23,19 @@ class Box extends Component {
     i: number.isRequired
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.isInView && !this.props.isInView) {
       window.document.title = this.props.i + 1
     }
   }
 
-  render () {
+  render() {
     const { i } = this.props
     return (
       <section className="box" style={{ backgroundColor: colors[i] }}>
-        <h3><code>location.title</code> should now be {i + 1}</h3>
+        <h3>
+          <code>location.title</code> should now be {i + 1}
+        </h3>
       </section>
     )
   }
@@ -42,8 +44,11 @@ class Box extends Component {
 class Demo extends Component {
   state = { docs: '' }
 
-  componentWillMount () {
-    window.fetch('https://raw.githubusercontent.com/jane/react-now-you-see-me/master/README.md')
+  componentWillMount() {
+    window
+      .fetch(
+        'https://raw.githubusercontent.com/jane/react-now-you-see-me/master/README.md'
+      )
       .then((a) => a.text())
       .then((t) => {
         this.setState({ docs: marked(t) })
@@ -51,16 +56,21 @@ class Demo extends Component {
       .catch(console.error)
   }
 
-  render () {
+  render() {
     return (
       <main className="wrapper">
-        <article dangerouslySetInnerHTML={{ __html: this.state.docs }} className="md" />
+        <article
+          dangerouslySetInnerHTML={{ __html: this.state.docs }}
+          className="md"
+        />
         <React.Fragment>
-          {Array(10).fill().map((_, i) =>
-            <InView key={i} threshold={0}>
-              {(isInView) => <Box i={i} isInView={isInView} />}
-            </InView>
-          )}
+          {Array(10)
+            .fill()
+            .map((_, i) => (
+              <InView key={i} threshold={0}>
+                {(isInView) => <Box i={i} isInView={isInView} />}
+              </InView>
+            ))}
         </React.Fragment>
       </main>
     )

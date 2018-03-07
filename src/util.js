@@ -8,20 +8,25 @@ export const on = (evtName, opts) => (el) => (fn) => {
   }
 }
 
-const isBetween = (minInclusive, max) => (target) => Math.max(Math.min(max, target), minInclusive) === target
+const isBetween = (minInclusive, max) => (target) =>
+  Math.max(Math.min(max, target), minInclusive) === target
 
-const isBoundingClientRectInRange = ({ targetRect, boundingRect, fullyContained }) => {
+const isBoundingClientRectInRange = ({
+  targetRect,
+  boundingRect,
+  fullyContained
+}) => {
   const horizBounds = isBetween(boundingRect.left, boundingRect.right)
   const vertBounds = isBetween(boundingRect.top, boundingRect.bottom)
   return fullyContained
     ? horizBounds(targetRect.left) &&
-      horizBounds(targetRect.right) &&
-      vertBounds(targetRect.top) &&
-      vertBounds(targetRect.bottom)
+        horizBounds(targetRect.right) &&
+        vertBounds(targetRect.top) &&
+        vertBounds(targetRect.bottom)
     : horizBounds(targetRect.left) ||
-      horizBounds(targetRect.right) ||
-      vertBounds(targetRect.top) ||
-      vertBounds(targetRect.bottom)
+        horizBounds(targetRect.right) ||
+        vertBounds(targetRect.top) ||
+        vertBounds(targetRect.bottom)
 }
 
 export const inViewport = ({
@@ -31,21 +36,21 @@ export const inViewport = ({
   boundingLeft,
   boundingRight,
   requireEntireElementInViewport = false
-} = {}) =>
-  (element) => {
-    if (!element) return false
-    if (!element.offsetParent) return true
-    const horizMin = 0 - offsetHoriz
-    const horizMax = window.innerWidth + offsetHoriz
-    const vertMin = 0 - offsetVert
-    const vertMax = window.innerHeight + offsetVert
-    return isBoundingClientRectInRange({
-      targetRect: element.getBoundingClientRect(),
-      boundingRect: {
-        top: vertMin,
-        bottom: vertMax,
-        left: isNaN(boundingLeft) ? horizMin : boundingLeft,
-        right: isNaN(boundingRight) ? horizMax : boundingRight },
-      fullyContained: requireEntireElementInViewport
-    })
-  }
+} = {}) => (element) => {
+  if (!element) return false
+  if (!element.offsetParent) return true
+  const horizMin = 0 - offsetHoriz
+  const horizMax = window.innerWidth + offsetHoriz
+  const vertMin = 0 - offsetVert
+  const vertMax = window.innerHeight + offsetVert
+  return isBoundingClientRectInRange({
+    targetRect: element.getBoundingClientRect(),
+    boundingRect: {
+      top: vertMin,
+      bottom: vertMax,
+      left: isNaN(boundingLeft) ? horizMin : boundingLeft,
+      right: isNaN(boundingRight) ? horizMax : boundingRight
+    },
+    fullyContained: requireEntireElementInViewport
+  })
+}
