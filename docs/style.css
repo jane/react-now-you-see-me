@@ -22,6 +22,9 @@ html, body {
 }
 
 .wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   max-width: 900px;
 }
 
@@ -62,7 +65,8 @@ hr {
 }
 
 .box {
-  height: 100vh;
+  height: 30vh;
+  width: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
