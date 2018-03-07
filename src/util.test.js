@@ -17,18 +17,50 @@ describe('inViewport', () => {
   })
 
   it('determins element to be within view', () => {
-    expect(inViewport()(mockEl({ top: 500, bottom: 600, left: 500, right: 500 }))).toBe(true)
+    expect(
+      inViewport()(mockEl({ top: 500, bottom: 600, left: 500, right: 500 }))
+    ).toBe(true)
   })
 
   it('determins element to be within threshold of view', () => {
-    expect(inViewport()(mockEl({ top: -300, bottom: 100, left: 500, right: 600 }), undefined, 10)).toBe(true)
+    expect(
+      inViewport()(
+        mockEl({ top: -300, bottom: 100, left: 500, right: 600 }),
+        undefined,
+        10
+      )
+    ).toBe(true)
   })
 
   it.skip('determins element to not be within threshold of view', () => {
-    expect(inViewport()(mockEl({ top: -500, bottom: -401, left: 500, right: 500 }), undefined, 0.1)).toBe(false)
-    expect(inViewport()(mockEl({ top: 1500, bottom: 1600, left: 500, right: 500 }), undefined, 0.1)).toBe(false)
-    expect(inViewport()(mockEl({ top: 500, bottom: 600, left: -500, right: -400 }), undefined, 0.1)).toBe(false)
-    expect(inViewport()(mockEl({ top: 500, bottom: 600, left: 1500, right: 1600 }), undefined, 0.1)).toBe(false)
+    expect(
+      inViewport()(
+        mockEl({ top: -500, bottom: -401, left: 500, right: 500 }),
+        undefined,
+        0.1
+      )
+    ).toBe(false)
+    expect(
+      inViewport()(
+        mockEl({ top: 1500, bottom: 1600, left: 500, right: 500 }),
+        undefined,
+        0.1
+      )
+    ).toBe(false)
+    expect(
+      inViewport()(
+        mockEl({ top: 500, bottom: 600, left: -500, right: -400 }),
+        undefined,
+        0.1
+      )
+    ).toBe(false)
+    expect(
+      inViewport()(
+        mockEl({ top: 500, bottom: 600, left: 1500, right: 1600 }),
+        undefined,
+        0.1
+      )
+    ).toBe(false)
   })
 })
 
@@ -47,7 +79,9 @@ describe('on', () => {
     let hello = ''
 
     const el = document.querySelector('.el')
-    on('click')(el)(() => { hello = 'hello' })
+    on('click')(el)(() => {
+      hello = 'hello'
+    })
     el.click()
 
     expect(hello).toBe('hello')
@@ -67,7 +101,9 @@ describe('on', () => {
     let hello = ''
 
     const el = document.querySelector('.el')
-    const off = on('click')(el)(() => { hello = 'hello' })
+    const off = on('click')(el)(() => {
+      hello = 'hello'
+    })
     off()
     el.click()
 

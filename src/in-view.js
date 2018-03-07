@@ -31,7 +31,7 @@ export default class InView extends React.Component {
     hasUpdated: false
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.mounted = true
     this._ref = findDOMNode(this)
     this.isInViewport = inViewport({
@@ -44,14 +44,17 @@ export default class InView extends React.Component {
     this.scrollUnsubscribe = onWindowScroll(this.checkIsInViewDebounced)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.mounted = false
     this.scrollUnsubscribe()
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     const { threshold, debounce } = nextProps
-    this.isInViewport = inViewport({ threshold, requireEntireElementInViewport: true })
+    this.isInViewport = inViewport({
+      threshold,
+      requireEntireElementInViewport: true
+    })
     this.checkIsInViewDebounced = debounceFn(this.checkIsInView, debounce)
   }
 
@@ -61,7 +64,9 @@ export default class InView extends React.Component {
     const { threshold } = this.props
 
     if (threshold > 10 && !isProd) {
-      console.warn(`High InView threshold: "${threshold}". Threshold is multiplied by the viewport dimensions!`)
+      console.warn(
+        `High InView threshold: "${threshold}". Threshold is multiplied by the viewport dimensions!`
+      )
     }
 
     const wasInView = this.state.isInView
@@ -76,7 +81,7 @@ export default class InView extends React.Component {
   }
 
   checkIsInViewDebounced = debounceFn(this.checkIsInView, this.props.debounce)
-  render () {
+  render() {
     return this.props.children(this.state.isInView)
   }
 }
