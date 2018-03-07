@@ -110,7 +110,7 @@
         "git add"
       ],
       "ignore": [
-        "docs/*.js"
+        "**/docs/*.js"
       ]
     }
   },
