@@ -104,15 +104,10 @@
     ]
   },
   "lint-staged": {
-    "linters": {
-      "*.js": [
-        "prettier --write",
-        "git add"
-      ],
-      "ignore": [
-        "**/docs/*.js"
-      ]
-    }
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "peerDependencies": {
     "react": ">=16.0.0",

@@ -31,7 +31,6 @@ class Box extends Component {
 
   render() {
     const { i } = this.props
-    console.log(i, this.props.isInView)
     return (
       <section className="box" style={{ backgroundColor: colors[i] }}>
         <h3>
