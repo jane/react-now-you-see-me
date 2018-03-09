@@ -25,7 +25,7 @@ class Box extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isInView && !this.props.isInView) {
-      window.document.title = this.props.i + 1
+      this.props.updateNumber(this.props.i + 1)
     }
   }
 
@@ -33,16 +33,14 @@ class Box extends Component {
     const { i } = this.props
     return (
       <section className="box" style={{ backgroundColor: colors[i] }}>
-        <h3>
-          <code>location.title</code> should now be {i + 1}
-        </h3>
+        <h3>slide number {i + 1}</h3>
       </section>
     )
   }
 }
 
 class Demo extends Component {
-  state = { docs: '' }
+  state = { docs: '', n: 1 }
 
   componentWillMount() {
     window
@@ -56,6 +54,10 @@ class Demo extends Component {
       .catch(console.error)
   }
 
+  updateNumber = (n) => {
+    this.setState({ n })
+  }
+
   render() {
     return (
       <main className="wrapper">
@@ -63,6 +65,7 @@ class Demo extends Component {
           dangerouslySetInnerHTML={{ __html: this.state.docs }}
           className="md"
         />
+        <h3>slide number {this.state.n} is in view</h3>
         <div
           style={{
             display: 'flex',
@@ -75,7 +78,13 @@ class Demo extends Component {
             .fill()
             .map((_, i) => (
               <InView key={i} threshold={0}>
-                {(isInView) => <Box i={i} isInView={isInView} />}
+                {(isInView) => (
+                  <Box
+                    updateNumber={this.updateNumber}
+                    i={i}
+                    isInView={isInView}
+                  />
+                )}
               </InView>
             ))}
         </div>
