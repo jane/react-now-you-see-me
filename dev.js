@@ -31,6 +31,7 @@ class Box extends Component {
 
   render() {
     const { i } = this.props
+    console.log(i, this.props.isInView)
     return (
       <section className="box" style={{ backgroundColor: colors[i] }}>
         <h3>
@@ -63,7 +64,14 @@ class Demo extends Component {
           dangerouslySetInnerHTML={{ __html: this.state.docs }}
           className="md"
         />
-        <React.Fragment>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'nowrap',
+            overflow: 'scroll'
+          }}
+        >
           {Array(10)
             .fill()
             .map((_, i) => (
@@ -71,7 +79,7 @@ class Demo extends Component {
                 {(isInView) => <Box i={i} isInView={isInView} />}
               </InView>
             ))}
-        </React.Fragment>
+        </div>
       </main>
     )
   }
