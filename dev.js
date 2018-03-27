@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import InView from './src'
-import { bool, number } from 'prop-types'
+import { bool, func, number } from 'prop-types'
 import marked from 'marked'
 
 const colors = [
@@ -20,7 +20,8 @@ const colors = [
 class Box extends Component {
   static propTypes = {
     isInView: bool,
-    i: number.isRequired
+    i: number.isRequired,
+    updateNumber: func.isRequired
   }
 
   componentWillReceiveProps(nextProps) {
