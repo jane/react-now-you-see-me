@@ -14,7 +14,7 @@ const isBetween = (minInclusive, max) => (target) =>
 const isBoundingClientRectInRange = ({
   targetRect,
   boundingRect,
-  fullyContained
+  fullyContained,
 }) => {
   const horizBounds = isBetween(boundingRect.left, boundingRect.right)
   const vertBounds = isBetween(boundingRect.top, boundingRect.bottom)
@@ -35,7 +35,7 @@ export const inViewport = ({
   offsetHoriz = window.innerWidth * threshold,
   boundingLeft,
   boundingRight,
-  requireEntireElementInViewport = false
+  requireEntireElementInViewport = false,
 } = {}) => (element) => {
   if (!element) return false
   if (!element.offsetParent) return true
@@ -49,8 +49,8 @@ export const inViewport = ({
       top: vertMin,
       bottom: vertMax,
       left: isNaN(boundingLeft) ? horizMin : boundingLeft,
-      right: isNaN(boundingRight) ? horizMax : boundingRight
+      right: isNaN(boundingRight) ? horizMax : boundingRight,
     },
-    fullyContained: requireEntireElementInViewport
+    fullyContained: requireEntireElementInViewport,
   })
 }

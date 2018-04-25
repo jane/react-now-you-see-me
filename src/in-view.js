@@ -15,20 +15,20 @@ export default class InView extends React.Component {
     debounce: number,
     horizontally: bool,
     once: bool,
-    threshold: number
+    threshold: number,
   }
 
   static defaultProps = {
     debounce: 250,
     threshold: 0,
-    once: false
+    once: false,
   }
 
   mounted = false
 
   state = {
     isInView: false,
-    hasUpdated: false
+    hasUpdated: false,
   }
 
   componentDidMount() {
@@ -38,7 +38,7 @@ export default class InView extends React.Component {
       threshold: this.props.threshold,
       boundingLeft: this.props.boundingLeft,
       boundingRight: this.props.boundingRight,
-      requireEntireElementInViewport: true
+      requireEntireElementInViewport: true,
     })
     this.checkIsInView()
     this.scrollUnsubscribe = onWindowScroll(this.checkIsInViewDebounced)
@@ -53,7 +53,7 @@ export default class InView extends React.Component {
     const { threshold, debounce } = nextProps
     this.isInViewport = inViewport({
       threshold,
-      requireEntireElementInViewport: true
+      requireEntireElementInViewport: true,
     })
     this.checkIsInViewDebounced = debounceFn(this.checkIsInView, debounce)
   }
@@ -75,7 +75,7 @@ export default class InView extends React.Component {
     if (wasInView !== isNowInView) {
       this.setState(() => ({
         isInView: isNowInView,
-        hasUpdated: true
+        hasUpdated: true,
       }))
     }
   }

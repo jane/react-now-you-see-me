@@ -14,14 +14,14 @@ const colors = [
   '#e7ee28',
   '#e08388',
   '#62fd1e',
-  '#eaa30a'
+  '#eaa30a',
 ]
 
 class Box extends Component {
   static propTypes = {
     isInView: bool,
     i: number.isRequired,
-    updateNumber: func.isRequired
+    updateNumber: func.isRequired,
   }
 
   componentWillReceiveProps(nextProps) {
@@ -72,7 +72,7 @@ class Demo extends Component {
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'nowrap',
-            overflow: 'scroll'
+            overflow: 'scroll',
           }}
         >
           {Array(10)

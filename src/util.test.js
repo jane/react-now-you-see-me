@@ -12,8 +12,8 @@ describe('inViewport', () => {
       left,
       right,
       width: right - left,
-      height: bottom - top
-    })
+      height: bottom - top,
+    }),
   })
 
   it('determins element to be within view', () => {
