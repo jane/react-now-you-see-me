@@ -48,9 +48,6 @@
     "babel-preset-stage-3": "6.24.1",
     "babel-register": "6.26.0",
     "dom-testing-library": "1.10.0",
-    "enzyme": "3.3.0",
-    "enzyme-adapter-react-16": "1.1.1",
-    "enzyme-to-json": "3.3.3",
     "eslint": "4.19.1",
     "eslint-config-jane": "2.0.2",
     "eslint-plugin-babel": "5.1.0",
@@ -68,7 +65,6 @@
     "prettier": "1.12.1",
     "prop-types": "15.6.1",
     "react": "16.3.2",
-    "react-addons-test-utils": "15.6.2",
     "react-dom": "16.3.2",
     "react-testing-library": "2.5.1",
     "webpack": "4.6.0",
@@ -85,9 +81,6 @@
     ],
     "modulePaths": [
       "<rootDir>/src/"
-    ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
     ],
     "testPathIgnorePatterns": [
       "<rootDir>/(lib|node_modules)/"
