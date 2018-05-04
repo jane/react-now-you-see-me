@@ -33,7 +33,6 @@ export default class InView extends React.Component {
 
   componentDidMount() {
     this.mounted = true
-    this._ref = findDOMNode(this)
     this.isInViewport = inViewport({
       threshold: this.props.threshold,
       boundingLeft: this.props.boundingLeft,
@@ -53,6 +52,8 @@ export default class InView extends React.Component {
     const { threshold, debounce } = nextProps
     this.isInViewport = inViewport({
       threshold,
+      boundingLeft: this.props.boundingLeft,
+      boundingRight: this.props.boundingRight,
       requireEntireElementInViewport: true,
     })
     this.checkIsInViewDebounced = debounceFn(this.checkIsInView, debounce)
@@ -70,7 +71,7 @@ export default class InView extends React.Component {
     }
 
     const wasInView = this.state.isInView
-    const isNowInView = this.isInViewport(this._ref)
+    const isNowInView = this.isInViewport(findDOMNode(this))
 
     if (wasInView !== isNowInView) {
       this.setState(() => ({
