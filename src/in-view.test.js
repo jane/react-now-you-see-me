@@ -25,21 +25,26 @@ const boundingClientRect = ({
 })
 
 const renderInView = (props) => {
-  const ops = render(
+  const toRender = (props) => (
     <InView {...props}>
       {(inView) => <div data-testid="box">{inView ? 'true' : 'false'}</div>}
     </InView>
   )
+
+  const ops = render(toRender(props))
   const box = ops.getByTestId('box')
   box.getBoundingClientRect = jest.fn().mockReturnValue(boundingClientRect())
+  const scroll = () => fireEvent.scroll(window)
   return {
     ...ops,
+    rerender: (props) => ops.rerender(toRender(props)),
     getBox: () => box,
+    scroll,
     setBoundingRect: (params) => {
       box.getBoundingClientRect = jest
         .fn()
         .mockReturnValue(boundingClientRect(params))
-      fireEvent.scroll(window)
+      scroll()
     },
   }
 }
@@ -103,5 +108,51 @@ test('renders as false when outside of boundingRight', async () => {
     left: 100,
     right: 301,
   })
+  await wait(() => expect(getBox()).toHaveTextContent('false'))
+})
+
+test('boundingLeft continues to work even after prop change', async () => {
+  const { getBox, setBoundingRect, rerender, scroll } = renderInView({
+    debounce: 1,
+    boundingLeft: 100,
+    boundingRight: 300,
+  })
+  setBoundingRect({
+    top: 0,
+    bottom: 100,
+    left: 50,
+    right: 300,
+  })
+  await wait(() => expect(getBox()).toHaveTextContent('false'))
+  // Should still be out of bounds.
+  rerender({
+    debounce: 1,
+    boundingLeft: 100,
+    boundingRight: 400,
+  })
+  scroll()
+  await wait(() => expect(getBox()).toHaveTextContent('false'))
+})
+
+test('boundingRight continues to work even after prop change', async () => {
+  const { getBox, setBoundingRect, rerender, scroll } = renderInView({
+    debounce: 1,
+    boundingLeft: 100,
+    boundingRight: 300,
+  })
+  setBoundingRect({
+    top: 0,
+    bottom: 100,
+    left: 100,
+    right: 350,
+  })
+  await wait(() => expect(getBox()).toHaveTextContent('false'))
+  // Should still be out of bounds.
+  rerender({
+    debounce: 1,
+    boundingLeft: 0,
+    boundingRight: 300,
+  })
+  scroll()
   await wait(() => expect(getBox()).toHaveTextContent('false'))
 })
