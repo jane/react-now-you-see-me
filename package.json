@@ -94,8 +94,7 @@
       "json"
     ],
     "collectCoverageFrom": [
-      "**/*.js",
-      "!**/node_modules/**"
+      "src/**/*.js"
     ]
   },
   "lint-staged": {
