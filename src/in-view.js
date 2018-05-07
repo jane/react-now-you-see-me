@@ -13,7 +13,6 @@ export default class InView extends React.Component {
     boundingRight: number,
     children: func.isRequired,
     debounce: number,
-    horizontally: bool,
     once: bool,
     threshold: number,
   }
