@@ -49,11 +49,11 @@ export default class InView extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { threshold, debounce } = nextProps
+    const { threshold, debounce, boundingLeft, boundingRight } = nextProps
     this.isInViewport = inViewport({
       threshold,
-      boundingLeft: this.props.boundingLeft,
-      boundingRight: this.props.boundingRight,
+      boundingLeft,
+      boundingRight,
       requireEntireElementInViewport: true,
     })
     this.checkIsInViewDebounced = debounceFn(this.checkIsInView, debounce)

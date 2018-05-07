@@ -156,3 +156,26 @@ test('boundingRight continues to work even after prop change', async () => {
   scroll()
   await wait(() => expect(getBox()).toHaveTextContent('false'))
 })
+
+test('inViewport accepts changed bounding props', async () => {
+  const { getBox, setBoundingRect, rerender, scroll } = renderInView({
+    debounce: 1,
+    boundingLeft: 100,
+    boundingRight: 300,
+  })
+  setBoundingRect({
+    top: 0,
+    bottom: 100,
+    left: 50,
+    right: 350,
+  })
+  await wait(() => expect(getBox()).toHaveTextContent('false'))
+  // Now should be in-bounds.
+  rerender({
+    debounce: 1,
+    boundingLeft: 50,
+    boundingRight: 350,
+  })
+  scroll()
+  await wait(() => expect(getBox()).toHaveTextContent('true'))
+})
