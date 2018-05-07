@@ -13,7 +13,6 @@ export default class InView extends React.Component {
     boundingRight: number,
     children: func.isRequired,
     debounce: number,
-    horizontally: bool,
     once: bool,
     threshold: number,
   }
@@ -48,15 +47,23 @@ export default class InView extends React.Component {
     this.scrollUnsubscribe()
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { threshold, debounce } = nextProps
-    this.isInViewport = inViewport({
-      threshold,
-      boundingLeft: this.props.boundingLeft,
-      boundingRight: this.props.boundingRight,
-      requireEntireElementInViewport: true,
-    })
-    this.checkIsInViewDebounced = debounceFn(this.checkIsInView, debounce)
+  componentDidUpdate(prevProps) {
+    const { threshold, debounce, boundingLeft, boundingRight } = this.props
+    if (
+      prevProps.threshold !== threshold ||
+      prevProps.boundingLeft !== boundingLeft ||
+      prevProps.boundingRight !== boundingRight
+    ) {
+      this.isInViewport = inViewport({
+        threshold,
+        boundingLeft,
+        boundingRight,
+        requireEntireElementInViewport: true,
+      })
+    }
+    if (prevProps.debounce !== debounce) {
+      this.checkIsInViewDebounced = debounceFn(this.checkIsInView, debounce)
+    }
   }
 
   checkIsInView = () => {
