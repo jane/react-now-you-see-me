@@ -5,6 +5,7 @@ import { func, number, bool } from 'prop-types'
 import { on, inViewport } from './util'
 
 const onWindowScroll = on('scroll', { capture: true, passive: true })(window)
+// eslint-disable-next-line no-undef
 const isProd = process && process.env && process.env.NODE_ENV === 'production'
 
 export default class InView extends React.Component {
@@ -72,6 +73,7 @@ export default class InView extends React.Component {
     const { threshold } = this.props
 
     if (threshold > 10 && !isProd) {
+      // eslint-disable-next-line no-console
       console.warn(
         `High InView threshold: "${threshold}". Threshold is multiplied by the viewport dimensions!`
       )
