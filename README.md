@@ -1,11 +1,11 @@
 # react-now-you-see-me
 
-A React component for determining when an element is within a given threshold of
-the viewport, horizontally.
+A React component for determining when an element is within a given threshold of the viewport, horizontally.
 
-* [demo](https://jane.github.io/react-now-you-see-me)
-* [npm](https://npmjs.com/package/react-now-you-see-me)
-* [repo](https://github.com/jane/react-now-you-see-me)
+* [Demo](https://jane.github.io/react-now-you-see-me)
+* [Repo](https://github.com/jane/react-now-you-see-me)
+
+[![npm version](https://img.shields.io/npm/v/react-now-you-see-me.svg)](https://npm.im/react-now-you-see-me) [![CircleCI](https://circleci.com/gh/jane/react-now-you-see-me.svg?style=svg)](https://circleci.com/gh/jane/react-now-you-see-me) [![Known Vulnerabilities](https://snyk.io/test/github/jane/react-now-you-see-me/badge.svg)](https://snyk.io/test/github/jane/react-now-you-see-me) [![Coverage Status](https://coveralls.io/repos/github/jane/react-now-you-see-me/badge.svg?branch=master)](https://coveralls.io/github/jane/react-now-you-see-me?branch=master)
 
 --------
 
