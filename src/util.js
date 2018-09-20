@@ -11,7 +11,7 @@ export const on = (evtName, opts) => (el) => (fn) => {
 const isBetween = (minInclusive, max) => (target) =>
   Math.max(Math.min(max, target), minInclusive) === target
 
-const isBoundingClientRectInRange = ({
+export const isBoundingClientRectInRange = ({
   targetRect,
   boundingRect,
   fullyContained,
@@ -23,10 +23,14 @@ const isBoundingClientRectInRange = ({
         horizBounds(targetRect.right) &&
         vertBounds(targetRect.top) &&
         vertBounds(targetRect.bottom)
-    : horizBounds(targetRect.left) ||
-        horizBounds(targetRect.right) ||
-        vertBounds(targetRect.top) ||
-        vertBounds(targetRect.bottom)
+    : (horizBounds(targetRect.left) &&
+        (vertBounds(targetRect.top) || vertBounds(targetRect.bottom))) ||
+        (horizBounds(targetRect.right) &&
+          (vertBounds(targetRect.top) || vertBounds(targetRect.bottom))) ||
+        (vertBounds(targetRect.top) &&
+          (horizBounds(targetRect.left) || horizBounds(targetRect.right))) ||
+        (vertBounds(targetRect.bottom) &&
+          (horizBounds(targetRect.left) || horizBounds(targetRect.right)))
 }
 
 export const inViewport = ({
