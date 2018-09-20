@@ -15,6 +15,7 @@ export default class InView extends React.Component {
     children: func.isRequired,
     debounce: number,
     once: bool,
+    requireEntireElementInViewport: bool,
     threshold: number,
   }
 
@@ -22,6 +23,7 @@ export default class InView extends React.Component {
     debounce: 250,
     threshold: 0,
     once: false,
+    requireEntireElementInViewport: true,
   }
 
   mounted = false
@@ -33,11 +35,17 @@ export default class InView extends React.Component {
 
   componentDidMount() {
     this.mounted = true
+    const {
+      threshold,
+      boundingLeft,
+      boundingRight,
+      requireEntireElementInViewport,
+    } = this.props
     this.isInViewport = inViewport({
-      threshold: this.props.threshold,
-      boundingLeft: this.props.boundingLeft,
-      boundingRight: this.props.boundingRight,
-      requireEntireElementInViewport: true,
+      threshold,
+      boundingLeft,
+      boundingRight,
+      requireEntireElementInViewport,
     })
     this.checkIsInView()
     this.scrollUnsubscribe = onWindowScroll(this.checkIsInViewDebounced)
@@ -49,17 +57,25 @@ export default class InView extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { threshold, debounce, boundingLeft, boundingRight } = this.props
+    const {
+      threshold,
+      debounce,
+      boundingLeft,
+      boundingRight,
+      requireEntireElementInViewport,
+    } = this.props
     if (
       prevProps.threshold !== threshold ||
       prevProps.boundingLeft !== boundingLeft ||
-      prevProps.boundingRight !== boundingRight
+      prevProps.boundingRight !== boundingRight ||
+      prevProps.requireEntireElementInViewport !==
+        requireEntireElementInViewport
     ) {
       this.isInViewport = inViewport({
         threshold,
         boundingLeft,
         boundingRight,
-        requireEntireElementInViewport: true,
+        requireEntireElementInViewport,
       })
     }
     if (prevProps.debounce !== debounce) {

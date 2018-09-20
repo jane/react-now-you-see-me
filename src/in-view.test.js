@@ -1,5 +1,5 @@
 import React from 'react'
-import { fireEvent, render, wait } from 'react-testing-library'
+import { fireEvent, render, wait, cleanup } from 'react-testing-library'
 import InView from './in-view'
 import 'dom-testing-library/extend-expect'
 
@@ -48,6 +48,8 @@ const renderInView = (props) => {
     },
   }
 }
+
+afterEach(cleanup)
 
 test('renders as true when visible', async () => {
   const { getBox, setBoundingRect } = renderInView()
@@ -175,6 +177,44 @@ test('inViewport accepts changed bounding props', async () => {
     debounce: 1,
     boundingLeft: 50,
     boundingRight: 350,
+  })
+  scroll()
+  await wait(() => expect(getBox()).toHaveTextContent('true'))
+})
+
+test('inViewport returns true for requireEntireElementInViewport=false', async () => {
+  const { getBox, setBoundingRect } = renderInView({
+    debounce: 1,
+    boundingLeft: 100,
+    boundingRight: 300,
+    requireEntireElementInViewport: false,
+  })
+  setBoundingRect({
+    top: -100,
+    bottom: 100,
+    left: 50,
+    right: 200,
+  })
+  await wait(() => expect(getBox()).toHaveTextContent('true'))
+})
+
+test('inViewport accepts changed requireEntireElementInViewport prop', async () => {
+  const { getBox, setBoundingRect, rerender, scroll } = renderInView({
+    debounce: 1,
+    boundingLeft: 100,
+    boundingRight: 300,
+    requireEntireElementInViewport: true,
+  })
+  setBoundingRect({
+    top: -100,
+    bottom: 100,
+    left: 50,
+    right: 200,
+  })
+  await wait(() => expect(getBox()).toHaveTextContent('false'))
+  // Now should be in-bounds.
+  rerender({
+    requireEntireElementInViewport: false,
   })
   scroll()
   await wait(() => expect(getBox()).toHaveTextContent('true'))
