@@ -39,7 +39,7 @@ export const inViewport = ({
   offsetHoriz = window.innerWidth * threshold,
   boundingLeft,
   boundingRight,
-  requireEntireElementInViewport = false,
+  isFullyContained = false,
 } = {}) => (element) => {
   if (!element) return false
   if (!element.offsetParent) return true
@@ -55,6 +55,6 @@ export const inViewport = ({
       left: isNaN(boundingLeft) ? horizMin : boundingLeft,
       right: isNaN(boundingRight) ? horizMax : boundingRight,
     },
-    fullyContained: requireEntireElementInViewport,
+    fullyContained: isFullyContained,
   })
 }

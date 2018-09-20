@@ -182,12 +182,12 @@ test('inViewport accepts changed bounding props', async () => {
   await wait(() => expect(getBox()).toHaveTextContent('true'))
 })
 
-test('inViewport returns true for requireEntireElementInViewport=false', async () => {
+test('inViewport returns true for isFullyContained=false', async () => {
   const { getBox, setBoundingRect } = renderInView({
     debounce: 1,
     boundingLeft: 100,
     boundingRight: 300,
-    requireEntireElementInViewport: false,
+    isFullyContained: false,
   })
   setBoundingRect({
     top: -100,
@@ -198,12 +198,12 @@ test('inViewport returns true for requireEntireElementInViewport=false', async (
   await wait(() => expect(getBox()).toHaveTextContent('true'))
 })
 
-test('inViewport accepts changed requireEntireElementInViewport prop', async () => {
+test('inViewport accepts changed isFullyContained prop', async () => {
   const { getBox, setBoundingRect, rerender, scroll } = renderInView({
     debounce: 1,
     boundingLeft: 100,
     boundingRight: 300,
-    requireEntireElementInViewport: true,
+    isFullyContained: true,
   })
   setBoundingRect({
     top: -100,
@@ -214,7 +214,7 @@ test('inViewport accepts changed requireEntireElementInViewport prop', async () 
   await wait(() => expect(getBox()).toHaveTextContent('false'))
   // Now should be in-bounds.
   rerender({
-    requireEntireElementInViewport: false,
+    isFullyContained: false,
   })
   scroll()
   await wait(() => expect(getBox()).toHaveTextContent('true'))
