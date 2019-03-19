@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { fireEvent, render, wait, cleanup } from 'react-testing-library'
 import InView from './in-view'
 import 'dom-testing-library/extend-expect'

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { findDOMNode } from 'react-dom'
 import debounceFn from 'lodash.debounce'
 import { func, number, bool } from 'prop-types'

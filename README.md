@@ -18,7 +18,7 @@ You'll also need React and ReactDOM peer dependencies: `npm i react react-dom`.
 ### Usage
 
 ```jsx
-import React from 'react'
+import * as React from 'react'
 import InView from 'react-now-you-see-me'
 
 const Foo = (props) => (

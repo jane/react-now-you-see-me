@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import * as React from 'react'
 import { render } from 'react-dom'
 import InView from './src'
 import { bool, func, number } from 'prop-types'
@@ -17,7 +17,7 @@ const colors = [
   '#eaa30a',
 ]
 
-class Box extends Component {
+class Box extends React.Component {
   static propTypes = {
     isInView: bool,
     i: number.isRequired,
@@ -40,7 +40,7 @@ class Box extends Component {
   }
 }
 
-class Demo extends Component {
+class Demo extends React.Component {
   state = { docs: '', n: 1 }
 
   componentWillMount() {
