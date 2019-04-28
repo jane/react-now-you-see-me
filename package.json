@@ -5,8 +5,8 @@
   "author": "Jane Web Team",
   "contributors": [
     "Cory Brown <oh.wise.man@gmail.com>",
-    "Zac Anger <zac@zacanger.com>",
-    "Jeremy Lund <jeremy.r.lund@gmail.com>"
+    "Jeremy Lund <jeremy.r.lund@gmail.com>",
+    "Zac Anger <zac@zacanger.com>"
   ],
   "license": "MIT",
   "main": "lib/index.js",
@@ -77,8 +77,14 @@
     "webpack-dev-server": "3.2.1"
   },
   "jest": {
-    "setupFiles": [
-      "<rootDir>/config/jest-setup.js"
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "coverageReporters": [
+      "json-summary",
+      "lcov",
+      "text",
+      "json"
     ],
     "moduleFileExtensions": [
       "js",
@@ -87,20 +93,14 @@
     "modulePaths": [
       "<rootDir>/src/"
     ],
+    "setupFiles": [
+      "<rootDir>/config/jest-setup.js"
+    ],
+    "testEnvironment": "jsdom",
     "testPathIgnorePatterns": [
       "<rootDir>/(lib|node_modules)/"
     ],
-    "testEnvironment": "jsdom",
-    "testRegex": "\\.test\\.js$",
-    "coverageReporters": [
-      "json-summary",
-      "lcov",
-      "text",
-      "json"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.js"
-    ]
+    "testRegex": "\\.test\\.js$"
   },
   "lint-staged": {
     "*.js": [
