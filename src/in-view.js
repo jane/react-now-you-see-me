@@ -83,8 +83,12 @@ export default class InView extends React.Component {
   }
 
   checkIsInView = () => {
-    if (!this.mounted) return
-    if (this.props.once && this.state.hasUpdated) return
+    if (!this.mounted) {
+      return
+    }
+    if (this.props.once && this.state.hasUpdated) {
+      return
+    }
     const { threshold } = this.props
 
     if (threshold > 10 && !isProd) {

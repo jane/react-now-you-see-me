@@ -24,6 +24,7 @@ class Box extends React.Component {
     updateNumber: func.isRequired,
   }
 
+  // eslint-disable-next-line
   componentWillReceiveProps(nextProps) {
     if (nextProps.isInView && !this.props.isInView) {
       this.props.updateNumber(this.props.i + 1)
@@ -43,6 +44,7 @@ class Box extends React.Component {
 class Demo extends React.Component {
   state = { docs: '', n: 1 }
 
+  // eslint-disable-next-line
   componentWillMount() {
     window
       .fetch(
@@ -52,6 +54,7 @@ class Demo extends React.Component {
       .then((t) => {
         this.setState({ docs: marked(t) })
       })
+      // eslint-disable-next-line no-console
       .catch(console.error)
   }
 
