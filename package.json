@@ -1,7 +1,7 @@
 {
   "name": "react-now-you-see-me",
   "description": "A React component for determining when an element is within a given threshold of the viewport, horizontally.",
-  "version": "1.5.6",
+  "version": "1.5.7",
   "author": "Jane Web Team",
   "contributors": [
     "Cory Brown <oh.wise.man@gmail.com>",
