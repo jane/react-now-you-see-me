@@ -58,37 +58,6 @@ describe('inViewport', () => {
       )
     ).toBe(true)
   })
-
-  it.skip('determins element to not be within threshold of view', () => {
-    expect(
-      inViewport()(
-        mockEl({ top: -500, bottom: -401, left: 500, right: 500 }),
-        undefined,
-        0.1
-      )
-    ).toBe(false)
-    expect(
-      inViewport()(
-        mockEl({ top: 1500, bottom: 1600, left: 500, right: 500 }),
-        undefined,
-        0.1
-      )
-    ).toBe(false)
-    expect(
-      inViewport()(
-        mockEl({ top: 500, bottom: 600, left: -500, right: -400 }),
-        undefined,
-        0.1
-      )
-    ).toBe(false)
-    expect(
-      inViewport()(
-        mockEl({ top: 500, bottom: 600, left: 1500, right: 1600 }),
-        undefined,
-        0.1
-      )
-    ).toBe(false)
-  })
 })
 
 describe('on', () => {

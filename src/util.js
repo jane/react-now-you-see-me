@@ -1,10 +1,16 @@
 const isFn = (f) => typeof f === 'function'
 
 export const on = (evtName, opts) => (el) => (fn) => {
-  if (isFn(el.addEventListener)) el.addEventListener(evtName, fn, opts)
+  if (isFn(el.addEventListener)) {
+    el.addEventListener(evtName, fn, opts)
+  }
   return () => {
-    if (isFn(el.removeEventListener)) el.removeEventListener(evtName, fn)
-    if (isFn(fn.cancel)) fn.cancel()
+    if (isFn(el.removeEventListener)) {
+      el.removeEventListener(evtName, fn)
+    }
+    if (isFn(fn.cancel)) {
+      fn.cancel()
+    }
   }
 }
 
@@ -41,8 +47,12 @@ export const inViewport = ({
   boundingRight,
   isFullyContained = false,
 } = {}) => (element) => {
-  if (!element) return false
-  if (!element.offsetParent) return true
+  if (!element) {
+    return false
+  }
+  if (!element.offsetParent) {
+    return true
+  }
   const horizMin = 0 - offsetHoriz
   const horizMax = window.innerWidth + offsetHoriz
   const vertMin = 0 - offsetVert

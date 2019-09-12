@@ -8,5 +8,10 @@
   ],
   "plugins": [
     "jane"
-  ]
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }
