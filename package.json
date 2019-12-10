@@ -70,7 +70,7 @@
     "prop-types": "15.7.2",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "react-testing-library": "8.0.1",
+    "react-testing-library": "5.2.0",
     "regenerator-runtime": "0.13.3",
     "sortpack": "2.0.4",
     "webpack": "4.41.2",
