@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/no-abusive-eslint-disable */
+
 import * as React from 'react'
 import { render } from 'react-dom'
 import InView from './src'
@@ -78,19 +80,17 @@ class Demo extends React.Component {
             overflow: 'scroll',
           }}
         >
-          {Array(10)
-            .fill()
-            .map((_, i) => (
-              <InView key={i} threshold={0}>
-                {(isInView) => (
-                  <Box
-                    updateNumber={this.updateNumber}
-                    i={i}
-                    isInView={isInView}
-                  />
-                )}
-              </InView>
-            ))}
+          {new Array(10).fill().map((_, i) => (
+            <InView key={i} threshold={0}>
+              {(isInView) => (
+                <Box
+                  updateNumber={this.updateNumber}
+                  i={i}
+                  isInView={isInView}
+                />
+              )}
+            </InView>
+          ))}
         </div>
       </main>
     )
