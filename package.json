@@ -3,11 +3,6 @@
   "description": "A React component for determining when an element is within a given threshold of the viewport, horizontally.",
   "version": "1.5.21",
   "author": "Jane Web Team",
-  "contributors": [
-    "Cory Brown <oh.wise.man@gmail.com>",
-    "Jeremy Lund <jeremy.r.lund@gmail.com>",
-    "Zac Anger <zac@zacanger.com>"
-  ],
   "license": "MIT",
   "main": "lib/index.js",
   "files": [
