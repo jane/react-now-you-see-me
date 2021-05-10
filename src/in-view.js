@@ -4,7 +4,10 @@ import debounceFn from 'lodash.debounce'
 import { func, number, bool } from 'prop-types'
 import { on, inViewport } from './util'
 
-const onWindowScroll = on('scroll', { capture: true, passive: true })(window)
+const onWindowScroll =
+  typeof window !== undefined
+    ? on('scroll', { capture: true, passive: true })(window)
+    : () => () => {}
 // eslint-disable-next-line no-undef
 const isProd = process && process.env && process.env.NODE_ENV === 'production'
 
