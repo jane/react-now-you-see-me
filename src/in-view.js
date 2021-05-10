@@ -5,7 +5,7 @@ import { func, number, bool } from 'prop-types'
 import { on, inViewport } from './util'
 
 const onWindowScroll =
-  typeof window !== undefined
+  typeof window !== 'undefined'
     ? on('scroll', { capture: true, passive: true })(window)
     : () => () => {}
 // eslint-disable-next-line no-undef
